@@ -1,5 +1,6 @@
 package com.syrobin.me.hybrid.controller;
 
+import org.graalvm.polyglot.Context;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,13 @@ public class HybirdController {
 
     @GetMapping("/hello")
     public String hello() {
+
+        // Java代码作为启动代码
+        System.out.println("Hello GraalVM! from Java");
+        System.out.println("Let's go with JavaScript");
+
+        Context polyglot = Context.create();
+        polyglot.eval("js", "print('Hello GraalVM! from JavaScript')");
         return "hello";
     }
 }
